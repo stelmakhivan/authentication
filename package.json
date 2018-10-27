@@ -41,5 +41,8 @@
     "stylelint": "^9.6.0",
     "stylelint-config-standard": "^18.2.0",
     "nodemon": "^1.18.5"
+  },
+  "dependencies": {
+    "dotenv": "^6.1.0"
   }
 }
