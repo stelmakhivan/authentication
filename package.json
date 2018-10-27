@@ -1,0 +1,45 @@
+{
+  "name": "authentication",
+  "version": "1.0.0",
+  "description": "Sample Authentication",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "devserver": "nodemon ./bin/www -w ./",
+    "test": "jest",
+    "lint": "eslint ./src",
+    "lint:watch": "esw --watch",
+    "stylelint": "stylelint './src/**/*.css'",
+    "precommit": "npm run lint && npm run stylelint",
+    "prepush": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stelmakhivan/authentication.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "passportjs",
+    "authentication",
+    "node-sass"
+  ],
+  "author": "Ivan Stelmakh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stelmakhivan/authentication/issues"
+  },
+  "homepage": "https://github.com/stelmakhivan/authentication#readme",
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-plugin-jest": "^21.25.1",
+    "eslint-watch": "^4.0.2",
+    "husky": "^1.1.2",
+    "jest": "^23.6.0",
+    "node-sass": "^4.9.4",
+    "stylelint": "^9.6.0",
+    "stylelint-config-standard": "^18.2.0",
+    "nodemon": "^1.18.5"
+  }
+}
