@@ -1,0 +1,152 @@
+.content {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.form-header-btn {
+  width: 50%;
+  color: #000;
+}
+
+.form-header-btn,
+.btn {
+  font: inherit;
+  border: none;
+  padding: 0.8rem;
+  background-color: #fff;
+}
+
+.btn {
+  background-color: #b72e45;
+  color: #fff;
+  border-radius: 4px;
+  font-weight: bolder;
+}
+
+.container .form-tabs {
+  padding: 0;
+}
+
+.form-header-btn:hover,
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn[disabled] {
+  background: #d36262;
+  cursor: not-allowed;
+}
+
+.active {
+  background-color: #b72e45;
+  color: #fff;
+}
+
+.form-body {
+  padding: 0.7rem 0;
+  font-size: 1rem;
+}
+
+.label {
+  font-weight: bolder;
+}
+
+.label,
+.input {
+  display: block;
+  padding: 0.4rem 0.2rem;
+}
+
+.input {
+  font: inherit;
+  width: 100%;
+  margin-bottom: 1rem;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+.input:focus {
+  outline-color: #b72e45;
+  box-shadow: 0 0 1px 1px #b72e45;
+}
+
+.forget-password {
+  margin-left: 1rem;
+  color: #b72e45;
+}
+
+.form-footer {
+  font-size: 1rem;
+  padding-top: 1rem;
+}
+
+.form-footer-title {
+  text-align: center;
+}
+
+.form-footer-btns {
+  @media screen and (min-width: 100px) and (max-width: 480px) {
+    flex-direction: column;
+  }
+}
+
+.facebook-btn {
+  background: #4267b2 url('../img/icons-sprite.svg') no-repeat 13px -77px;
+}
+
+.google-btn {
+  background: #b72e45 url('../img/icons-sprite.svg') no-repeat 13px -33px;
+}
+
+.github-btn {
+  background: #24292e url('../img/icons-sprite.svg') no-repeat 13px 9px;
+}
+
+.facebook-btn,
+.google-btn,
+.github-btn {
+  flex-grow: 1;
+  border-radius: 0;
+  text-decoration: none;
+  padding-left: 2.4rem;
+  background-size: 1.1rem;
+}
+
+.signup-btn {
+  width: 100%;
+  margin-bottom: 0.4rem;
+}
+
+.form-footer-title,
+.agreement {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.agreement {
+  text-align: center;
+  font-size: 0.6rem
+}
+
+.verificate {
+  margin-left: 1.5rem;
+  background-color: $main-footer-bgc;
+  padding: 0.5rem;
+}
+
+.phone {
+  padding-bottom: 0.8rem;
+}
+
+.phone-label-input {
+  flex-grow: 1;
+}
+
+.align-bottom {
+  align-items: flex-end;
+}
+
+.phone-input {
+  margin-bottom: 0;
+}
