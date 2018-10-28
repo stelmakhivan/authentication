@@ -9,3 +9,51 @@
 .justify-content-between {
   justify-content: space-between;
 }
+
+.container {
+  min-width: 200px;
+  margin: auto;
+  max-width: 60%;
+  font: 1.1rem Helvetica, sans-serif;
+  padding: 0.6rem;
+
+  @media screen and (min-width: 100px) and (max-width: 650px) {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+
+  @media screen and (min-width: 651px) and (max-width: 650px) {
+    max-width: 70%;
+  }
+
+  @media screen and (min-width: 979px) {
+    max-width: 700px;
+  }
+}
+
+.is-visible {
+  display: block;
+}
+
+.is-hide {
+  display: none
+}
+
+.alert {
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem
+}
+
+.alert-success {
+  color: $alert-success-color;
+  background-color: $alert-success-bgc;
+  border-color: $alert-success-border-color;
+}
+
+.alert-danger {
+  color: $alert-danger-color;
+  background-color: $alert-danger-bgc;
+  border-color: $alert-danger-border-color;
+}
