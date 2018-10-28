@@ -3,6 +3,19 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const sassMiddleware = require('node-sass-middleware');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+const config = require('./config/database');
+const PORT = process.env.PORT || 3000;
+
+mongoose.connect(config.database, { useNewUrlParser: true });
+const db = mongoose.connection;
+
+db.once('open', () => console.warn('Connected to MongoDB'));
+
+db.on('error', err => console.error(err));
 
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -28,6 +41,6 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.listen('3000', () => {
-  console.warn('Server started on port 3000...');
+app.listen(PORT, () => {
+  console.warn(`Server started on port ${PORT}...`);
 });
