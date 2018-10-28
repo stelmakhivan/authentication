@@ -3,12 +3,7 @@
 (function (global) {
   const formHeader = global.getElementById('form-header');
 
-  formHeader.addEventListener('click', ({target} = event) => {
-    const loginBtn = global.getElementById('login-btn');
-    const signupBtn = global.getElementById('signup-btn');
-    const loginBody = global.getElementById('login-form');
-    const signupBody = global.getElementById('signup-form');
-
+  function toggleForm (target, {loginBtn, signupBtn, loginBody, signupBody}) {
     if (target.classList.contains('login')) {
       loginBtn.classList.add('active');
       signupBtn.classList.remove('active');
@@ -22,5 +17,15 @@
       signupBody.classList.remove('is-hide');
       loginBody.classList.add('is-hide');
     }
+  }
+
+  formHeader.addEventListener('click', ({target} = event) => {
+    const formObject = {
+      loginBtn: global.getElementById('login-btn'),
+      signupBtn: global.getElementById('signup-btn'),
+      loginBody: global.getElementById('login-form'),
+      signupBody: global.getElementById('signup-form')
+    };
+    toggleForm(target, formObject);
   });
 })(document);
