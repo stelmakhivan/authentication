@@ -10,12 +10,16 @@ html
     link(rel='stylesheet' href='/css/main.css')
   body
     include sections/header
-    != messages('message', locals)
-    if errors
-      .container
-        each error, i in errors
-          div(class='alert alert-danger') #{error.msg}
-    include sections/main
+    main.content.container
+      != messages('message', locals)
+      if errors
+          each error, i in errors
+            div(class='alert alert-danger') #{error.msg}
+      .form-tabs
+        #form-header.form-header.flex
+          a#login-btn.form-header-btn.login.animated(href='/users/login') LOG IN
+          a#signup-btn.form-header-btn.signup.animated(href='/users/register') SIGN UP
+      block content
     include sections/footer
 
     script(src='/js/index.js')

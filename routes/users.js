@@ -5,6 +5,14 @@ const passport = require('passport');
 
 const User = require('../models/user');
 
+router.get('/users/register', (req,res) => {
+  res.render('sections/register');
+});
+
+router.get('/users/login', (req,res) => {
+  res.render('sections/login');
+});
+
 router.post('/nexmo', (req,res) => {
   process.env.VER_CODE = Math.floor(Math.random() * (9000 - 3000 + 1)) + 3000;
 
@@ -18,7 +26,7 @@ router.post('/nexmo', (req,res) => {
   }
 });
 
-router.post('/register', (req,res) => {
+router.post('/users/register', (req,res) => {
   const login = req.body['signup-login'];
   const email = req.body['signup-email'];
   const password = req.body['signup-password'];
@@ -35,7 +43,7 @@ router.post('/register', (req,res) => {
   const errors = req.validationErrors();
 
   if (errors) {
-    res.render('index', {
+    res.render('sections/register', {
       errors: errors
     });
   } else {
@@ -60,10 +68,9 @@ router.post('/register', (req,res) => {
         newUser.save(err => {
           if (err) {
             console.error(err);
-            return;
           } else {
             req.flash('success', 'You are now register and can log in');
-            res.redirect('/');
+            res.redirect('/users/login');
           }
         });
       });
