@@ -19,7 +19,7 @@
         number
       };
 
-      fetch('http://localhost:8080/nexmo', {
+      fetch('/users/nexmo', {
         method: 'post',
         headers: {
           'Accept': 'application/json',

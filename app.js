@@ -39,6 +39,8 @@ app.use(
   })
 );
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(session({
   secret: process.env.DB_SECRET,
   resave: true,
@@ -89,14 +91,12 @@ require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.get('/', (req, res) => {
   res.render('index');
 });
 
 const users = require('./routes/users');
-app.use('/', users);
+app.use('/users', users);
 
 app.listen(PORT, () => {
   console.warn(`Server started on port ${PORT}...`);
