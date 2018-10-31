@@ -3,13 +3,13 @@ main.content.container
     #form-header.form-header.flex
       button#login-btn.form-header-btn.login.active.animated(type='button') LOG IN
       button#signup-btn.form-header-btn.signup.animated(type='button') SIGN UP
-  form#login-form.form-body.login-form.animated.fadeInLeft(method='post')
+  form#login-form.form-body.login-form.animated.fadeInLeft(method='post' action='/login')
     label.label(for='login-input') Login
     input#login-input.input(type='text' name='login' required='')
     label.label(for='login-password') Password
     input#login-password.input(type='password' name='login' required='')
     .flex.align-center
-      input#login-submit.btn(type='submit' value='Login' disabled='')
+      input#login-submit.btn(type='submit' value='Login')
       a.forget-password(href='#') Forget password?
     .form-footer
       p.form-footer-title
@@ -21,7 +21,7 @@ main.content.container
           span Google
         a#login-github.github-btn.btn.flex.align-center(href='#')
           span Github
-  form#signup-form.form-body.signup-form.animated.fadeInRight.is-hide(method='post')
+  form#signup-form.form-body.signup-form.animated.fadeInRight.is-hide(method='post' action='/register')
     label.label(for='signup-login-input') Login
     input#signup-login-input.input(type='text' name='signup-login')
     label.label(for='signup-email-input') Email
@@ -31,11 +31,11 @@ main.content.container
     .phone.flex.align-bottom
       .phone-label-input
         label.label(for='signup-phone-input') Phone Number
-        input#signup-phone-input.input.phone-input(type='text' name='signup-phone' placeholder='+380123456789')
+        input#signup-phone-input.input.phone-input(type='text' name='signup-phone' placeholder='+380123456789' minlength='12' maxlength='13')
       button#verificate.verificate.btn Verificate
     label.label(for='signup-vercode') Verification code
     input#signup-vercode.input(type='text' name='signup-vercode' placeholder='****')
-    input#signup-submit.btn.signup-btn(type='submit' value='Sign Up' disabled='')
+    input#signup-submit.btn.signup-btn(type='submit' value='Sign Up')
     p.agreement
       | By clicking Sign Up, you agree to hifriends&apos;s
       br
