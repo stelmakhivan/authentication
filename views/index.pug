@@ -12,8 +12,9 @@ html
     include sections/header
     != messages('message', locals)
     if errors
-      each error, i in errors
-        div(class='alert alert-danger') #{error.msg}
+      .container
+        each error, i in errors
+          div(class='alert alert-danger') #{error.msg}
     include sections/main
     include sections/footer
 
