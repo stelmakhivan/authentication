@@ -1,7 +1,8 @@
 header.main-header
   .container.flex.align-center.justify-content-between
-    .user
-      a(href='/').flex.align-center
-        img.user-img(src='/img/avatar.png' alt='avatar')
-        span.user-name Ivan
-    a.logout-btn(href='/user/logout') Logout
+    if user
+      .user
+        a(href='/').flex.align-center
+          img.user-img(src='/img/avatar.png' alt='avatar')
+          span.user-name Ivan
+      a.logout-btn(href='/user/logout') Logout

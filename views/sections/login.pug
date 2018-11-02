@@ -1,0 +1,21 @@
+extends main
+
+block content
+  form#login-form.form-body.login-form.animated.fadeInLeft(method='post' action='/users/login')
+    label.label(for='login-input') Login
+    input#login-input.input(type='text' name='login' required='')
+    label.label(for='login-password') Password
+    input#login-password.input(type='password' name='login' required='')
+    .flex.align-center
+      input#login-submit.btn(type='submit' value='Login')
+      a.forget-password(href='#') Forget password?
+    .form-footer
+      p.form-footer-title
+        | ----------Login With----------
+      .form-footer-btns.flex
+        a#login-facebook.facebook-btn.btn.flex.align-center(href='#')
+          span Facebook
+        a#login-google.google-btn.btn.flex.align-center(href='#')
+          span Google
+        a#login-github.github-btn.btn.flex.align-center(href='#')
+          span Github
