@@ -45,11 +45,11 @@ router.post('/nexmo', (req, res) => {
 });
 
 router.post('/register', (req,res) => {
-  const login = req.body['signup-login'];
-  const email = req.body['signup-email'];
-  const password = req.body['signup-password'];
-  const phoneNumber = req.body['signup-phone'];
-  const verCode = req.body['signup-vercode'];
+  res.locals.login = req.body['signup-login'];
+  res.locals.email = req.body['signup-email'];
+  res.locals.password = req.body['signup-password'];
+  res.locals.phoneNumber = req.body['signup-phone'];
+  res.locals.verCode = req.body['signup-vercode'];
 
   req.checkBody('signup-login', 'Name is required').notEmpty();
   req.checkBody('signup-email', 'Email is required').notEmpty();
@@ -62,40 +62,61 @@ router.post('/register', (req,res) => {
 
   const errors = req.validationErrors();
 
-  if (errors) {
-    res.render('sections/register', {
-      errors: errors
-    });
-  } else {
-    const newUser = new User({
-      login: login,
-      email: email,
-      password: password,
-      phoneNumber: phoneNumber,
-      verCode: verCode
-    });
-
-    bcrypt.genSalt(10, (err, salt) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      bcrypt.hash(newUser.password, salt, (err, hash) => {
+  User.findOne({login: res.locals.login}, (err, login) => {
+    if (err) {
+      console.error(err);
+    }
+    if (errors) {
+      res.render('sections/register', {
+        errors: errors
+      });
+    } else if (login) {
+      req.flash('danger', 'User is already exist');
+      res.render('sections/register');
+    } else {
+      User.findOne({email: res.locals.email}, (err, email) => {
         if (err) {
           console.error(err);
         }
-        newUser.password = hash;
-        newUser.save(err => {
-          if (err) {
-            console.error(err);
-          } else {
-            req.flash('success', 'You are now register and can log in');
-            res.redirect('/users/login');
-          }
-        });
+        if (errors) {
+          res.render('sections/register', {
+            errors: errors
+          });
+        } else if (email) {
+          req.flash('danger', 'User is already exist');
+          res.render('sections/register');
+        } else {
+          const newUser = new User({
+            login: res.locals.login,
+            email: res.locals.email,
+            password: res.locals.password,
+            phoneNumber: res.locals.phoneNumber
+          });
+
+          bcrypt.genSalt(10, (err, salt) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
+              if (err) {
+                console.error(err);
+              }
+              newUser.password = hash;
+              newUser.save (err => {
+                if (err) {
+                  console.error(err);
+                } else {
+                  req.flash('success', 'You are now register and can log in');
+                  res.redirect('/users/login');
+                }
+              });
+            });
+          });
+        }
       });
-    });
-  }
+    }
+  });
 });
 
 module.exports = router;

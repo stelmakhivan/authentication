@@ -16,7 +16,8 @@ block content
           placeholder='+380123456789' minlength='12' maxlength='13' value= locals.phoneNumber)
         button#verificate.verificate.btn(formaction="/users/nexmo") Verificate
       label.label(for='signup-vercode') Verification code
-      input#signup-vercode.input(type='text' name='signup-vercode' placeholder='****' minlength='1' maxlength='4')
+      input#signup-vercode.input(type='text' name='signup-vercode'
+      placeholder='****' minlength='1' maxlength='4' value= locals.verCode)
       input#signup-submit.btn.signup-btn(type='submit' value='Sign Up')
       p.agreement
         | By clicking Sign Up, you agree to hifriends&apos;s
