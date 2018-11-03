@@ -90,8 +90,13 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-const users = require('./routes/users');
-app.use('/users', users);
+const register = require('./routes/register');
+const login = require('./routes/login');
+const logout = require('./routes/logout');
+
+app.use('/users', register);
+app.use('/users', login);
+app.use('/users', logout);
 
 app.listen(PORT, () => {
   console.warn(`Server started on port ${PORT}...`);
