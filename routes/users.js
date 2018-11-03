@@ -9,20 +9,38 @@ router.get('/register', (req,res) => {
   res.render('sections/register');
 });
 
+router.get('/nexmo', (req,res) => {
+  res.render('sections/register');
+});
+
 router.get('/login', (req,res) => {
   res.render('sections/login');
 });
 
-router.post('/nexmo', (req,res) => {
+router.post('/nexmo', (req, res) => {
   process.env.VER_CODE = Math.floor(Math.random() * (9000 - 3000 + 1)) + 3000;
 
-  const phoneNumber = req.body.number;
   const phonePattern = new RegExp('^((\\+3|8)+([0-9]){11})$');
+  res.locals.login = req.body['signup-login'];
+  res.locals.email = req.body['signup-email'];
+  res.locals.password = req.body['signup-password'];
+  res.locals.phoneNumber = req.body['signup-phone'];
+  res.locals.verCode = req.body['signup-vercode'];
 
-  if (phoneNumber.match(phonePattern)) {
-    res.send(`${process.env.VER_CODE}`);
+  req.checkBody('signup-phone', 'Phone number is required').notEmpty();
+  req.checkBody('signup-phone', 'Input phone number such as +380121234567')
+    .matches(phonePattern);
+
+  const errors = req.validationErrors();
+
+  if (errors) {
+    res.render('sections/register', {
+      errors: errors
+    });
   } else {
-    res.send('Wrong phone number');
+    req.flash('success', 'We send verification code to your phone');
+    res.render('sections/register');
+    console.warn(`${process.env.VER_CODE}`);
   }
 });
 
@@ -37,6 +55,8 @@ router.post('/register', (req,res) => {
   req.checkBody('signup-email', 'Email is required').notEmpty();
   req.checkBody('signup-email', 'Email is not valid').isEmail();
   req.checkBody('signup-phone', 'Phone number is required').notEmpty();
+  req.checkBody('signup-phone', 'Input phone number such as +380121234567')
+    .matches('^((\\+3|8)+([0-9]){11})$');
   req.checkBody('signup-password', 'Password is required').notEmpty();
   req.checkBody('signup-vercode', 'Verification code do not match').equals(process.env.VER_CODE);
 
