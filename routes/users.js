@@ -13,10 +13,6 @@ router.get('/nexmo', (req,res) => {
   res.render('sections/register');
 });
 
-router.get('/login', (req,res) => {
-  res.render('sections/login');
-});
-
 router.post('/nexmo', (req, res) => {
   process.env.VER_CODE = Math.floor(Math.random() * (9000 - 3000 + 1)) + 3000;
 
@@ -117,6 +113,24 @@ router.post('/register', (req,res) => {
       });
     }
   });
+});
+
+router.get('/login', (req,res) => {
+  res.render('sections/login');
+});
+
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  })(req, res, next);
+});
+
+router.get('/logout', (req, res) => {
+  req.logOut();
+  req.flash('success', 'You are logged out');
+  res.redirect('/users/login');
 });
 
 module.exports = router;

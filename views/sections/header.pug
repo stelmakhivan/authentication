@@ -4,5 +4,5 @@ header.main-header
       .user
         a(href='/').flex.align-center
           img.user-img(src='/img/avatar.png' alt='avatar')
-          span.user-name Ivan
-      a.logout-btn(href='/user/logout') Logout
+          span.user-name= user.login
+      a.logout-btn(href='/users/logout') Logout
