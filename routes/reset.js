@@ -2,7 +2,7 @@ const express = require('express');
 const router = new express.Router();
 const bcrypt = require('bcryptjs');
 
-const User = require('../models/user');
+const User = require('../models/user').user;
 
 router.get('/reset', (req, res) => {
   res.render('sections/reset');

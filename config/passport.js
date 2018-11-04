@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../models/user');
+const User = require('../models/user').user;
 const bcrypt = require('bcryptjs');
 const FacebookStrategy = require('passport-facebook').Strategy;
 
@@ -30,6 +30,20 @@ module.exports = passport => {
       });
     });
   }));
+
+  passport.use(new FacebookStrategy({
+      clientID: `${process.env.FACEBOOK_APP_ID}`,
+      clientSecret: `${process.env.FACEBOOK_APP_SECRET}`,
+      callbackURL: `${process.env.FACEBOOK_CALLBACK_URL}`
+    },
+    (accessToken, refreshToken, profile, done) => {
+      console.warn(profile);
+      // User.findOrCreate(..., function(err, user) {
+      //   if (err) { return done(err); }
+      //   done(null, user);
+      // });
+    }
+  ));
 
   passport.serializeUser((user, done) => {
     done(null, user.id);

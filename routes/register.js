@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 //   apiSecret: `${process.env.NEXMO_API_SECRET}`
 // });
 
-const User = require('../models/user');
+const User = require('../models/user').user;
 
 router.get('/register', (req,res) => {
   res.render('sections/register');

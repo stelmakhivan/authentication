@@ -19,4 +19,26 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
-const User = module.exports = mongoose.model('User', UserSchema);
+const FacebookSchema = new mongoose.Schema({
+  id: {
+    type: String,
+    required: true
+  },
+  token: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  name: {
+    type: String,
+    required: true
+  }
+});
+
+const User = mongoose.model('User', UserSchema);
+const FacebookUser = mongoose.model('Facebook', FacebookSchema);
+exports.user = User;
+exports.facebookUser = FacebookUser;

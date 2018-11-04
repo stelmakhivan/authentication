@@ -1,7 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const nodemailer = require('nodemailer');
-const User = require('../models/user');
+const User = require('../models/user').user;
 
 router.get('/remind', (req, res) => {
   res.render('sections/remind');
