@@ -95,12 +95,14 @@ const login = require('./routes/login');
 const logout = require('./routes/logout');
 const remind = require('./routes/remind');
 const reset = require('./routes/reset');
+const facebook = require('./routes/facebook');
 
 app.use('/users', register);
 app.use('/users', login);
 app.use('/users', logout);
 app.use('/users', remind);
 app.use('/users', reset);
+app.use('/users', facebook);
 app.use((req, res,) => {
   res.status(404).render('index');
 });
