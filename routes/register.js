@@ -27,6 +27,7 @@ router.post('/nexmo', (req, res) => {
   res.locals.password = req.body['signup-password'];
   res.locals.phoneNumber = req.body['signup-phone'];
   res.locals.verCode = req.body['signup-vercode'];
+  res.locals.secret = req.body['signup-secret-word'];
 
   req.checkBody('signup-phone', 'Phone number is required').notEmpty();
   req.checkBody('signup-phone', 'Input phone number such as +380121234567')
@@ -58,8 +59,9 @@ router.post('/register', (req,res) => {
   res.locals.password = req.body['signup-password'];
   res.locals.phoneNumber = req.body['signup-phone'];
   res.locals.verCode = req.body['signup-vercode'];
+  res.locals.secret = req.body['signup-secret-word'];
 
-  req.checkBody('signup-login', 'Name is required').notEmpty();
+  req.checkBody('signup-login', 'Login is required').notEmpty();
   req.checkBody('signup-email', 'Email is required').notEmpty();
   req.checkBody('signup-email', 'Email is not valid').isEmail();
   req.checkBody('signup-phone', 'Phone number is required').notEmpty();
@@ -67,6 +69,7 @@ router.post('/register', (req,res) => {
     .matches('^((\\+3|8)+([0-9]){11})$');
   req.checkBody('signup-password', 'Password is required').notEmpty();
   req.checkBody('signup-vercode', 'Verification code do not match').equals(process.env.VER_CODE);
+  req.checkBody('signup-secret-word', 'Secret word is required').notEmpty();
 
   const errors = req.validationErrors();
 
@@ -98,7 +101,8 @@ router.post('/register', (req,res) => {
             login: res.locals.login,
             email: res.locals.email,
             password: res.locals.password,
-            phoneNumber: res.locals.phoneNumber
+            phoneNumber: res.locals.phoneNumber,
+            secret: res.locals.secret
           });
 
           bcrypt.genSalt(10, (err, salt) => {

@@ -9,6 +9,8 @@ router.get('/reset', (req, res) => {
 });
 
 router.post('/reset', (req, res) => {
+  req.checkBody('login', 'Login is required').notEmpty();
+  req.checkBody('secret', 'Secret word is required').notEmpty();
   req.checkBody('password2', 'Password do not match').equals(req.body.password1);
 
   const errors = req.validationErrors();
@@ -32,7 +34,7 @@ router.post('/reset', (req, res) => {
         }
         newPassword.password = hash;
 
-        User.findOneAndUpdate({login: req.body.login},
+        User.findOneAndUpdate({login: req.body.login, secret: req.body.secret},
           {$set: {password: newPassword.password}},
           {new: true},
           (err, user) => {
@@ -41,7 +43,7 @@ router.post('/reset', (req, res) => {
               res.redirect('/');
             }
             if (!user) {
-              req.flash('danger', 'User does not exist');
+              req.flash('danger', 'User does not exist or wrong secret word');
               res.redirect('/users/reset');
             } else {
               req.flash('success', 'You have successfully changed your password');

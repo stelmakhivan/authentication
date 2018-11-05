@@ -18,6 +18,9 @@ block content
       label.label(for='signup-vercode') Verification code
       input#signup-vercode.input(type='text' name='signup-vercode'
       placeholder='****' minlength='1' maxlength='4' value= locals.verCode)
+      label.label(for='signup-secret-word') Your secret word
+      input#signup-secret-word.input(type='text' name='signup-secret-word'
+      placeholder='Input your secret word' minlength='1' maxlength='15' value= locals.secret)
       input#signup-submit.btn.signup-btn(type='submit' value='Sign Up')
       p.agreement
         | By clicking Sign Up, you agree to hifriends&apos;s

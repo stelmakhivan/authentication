@@ -1,6 +1,6 @@
+'use strict';
+
 const express = require('express');
-const https = require('https');
-const fs = require('fs');
 const session = require('express-session');
 const expressValidator = require('express-validator');
 const path = require('path');
@@ -109,19 +109,6 @@ app.use((req, res,) => {
   res.status(404).render('index');
 });
 
-const options = {
-  key: fs.readFileSync( './secure/localhost.key' ),
-  cert: fs.readFileSync( './secure/localhost.cert' ),
-  requestCert: false,
-  rejectUnauthorized: false
-};
-
-const server = https.createServer( options, app );
-
-server.listen( PORT, function () {
+app.listen(PORT, () => {
   console.warn(`Server started on port ${PORT}...`);
 });
-
-// app.listen(PORT, () => {
-//   console.warn(`Server started on port ${PORT}...`);
-// });

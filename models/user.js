@@ -16,6 +16,10 @@ const UserSchema = new mongoose.Schema({
   phoneNumber: {
     type: String,
     required: true
+  },
+  secret: {
+    type: String,
+    required: true
   }
 });
 
