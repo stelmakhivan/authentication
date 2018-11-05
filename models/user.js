@@ -36,7 +36,18 @@ const FacebookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  name: {
+  login: {
+    type: String,
+    required: true
+  }
+});
+
+const GoogleSchema = new mongoose.Schema({
+  googleId: {
+    type: String,
+    required: true
+  },
+  login: {
     type: String,
     required: true
   }
@@ -44,5 +55,7 @@ const FacebookSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema);
 const FacebookUser = mongoose.model('Facebook', FacebookSchema);
+const GoogleUser = mongoose.model('Google', GoogleSchema);
 exports.user = User;
 exports.facebookUser = FacebookUser;
+exports.googleUser = GoogleUser;
