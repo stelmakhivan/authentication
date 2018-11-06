@@ -3,6 +3,7 @@ const User = require('../models/user').user;
 const bcrypt = require('bcryptjs');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GitHubStrategy = require('passport-github').Strategy;
 
 module.exports = passport => {
   passport.use(new LocalStrategy({
@@ -54,9 +55,21 @@ module.exports = passport => {
     callbackURL: `${process.env.GOOGLE_CALLBACK_URL}`
   },
   (accessToken, refreshToken, profile, cb) => {
-    console.warn(profile);
     User.findOrCreate({ userid: profile.id },
       { login: profile.displayName, userid: profile.id, googleId: profile.id}, (err, user) => {
+        return cb(err, user);
+      });
+  }
+  ));
+
+  passport.use(new GitHubStrategy({
+    clientID: `${process.env.GITHUB_CLIENT_ID}`,
+    clientSecret: `${process.env.GITHUB_CLIENT_SECRET}`,
+    callbackURL: `${process.env.GITHUB_CALLBACK_URL}`
+  },
+  (accessToken, refreshToken, profile, cb) => {
+    User.findOrCreate({ userid: profile.id },
+      { login: profile.displayName, userid: profile.id, githubId: profile.id}, (err, user) => {
         return cb(err, user);
       });
   }

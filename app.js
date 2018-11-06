@@ -100,6 +100,7 @@ const remind = require('./routes/remind');
 const reset = require('./routes/reset');
 const facebook = require('./routes/facebook');
 const google = require('./routes/google');
+const github = require('./routes/github');
 
 app.use('/users', register);
 app.use('/users', login);
@@ -108,6 +109,7 @@ app.use('/users', remind);
 app.use('/users', reset);
 app.use('/users', facebook);
 app.use('/users', google);
+app.use('/users', github);
 app.use((req, res,) => {
   res.status(404).render('index');
 });
