@@ -4,18 +4,23 @@ block content
   if !user
     form#signup-form.form-body.signup-form.animated.fadeInRight(method='post' action='/users/register')
       label.label(for='signup-login-input') Login
-      input#signup-login-input.input(type='text' name='signup-login')
+      input#signup-login-input.input(type='text' name='signup-login' value= locals.login)
       label.label(for='signup-email-input') Email
-      input#signup-email-input.input(type='email' name='signup-email')
+      input#signup-email-input.input(type='email' name='signup-email' value= locals.email)
       label.label(for='signup-password') Password
-      input#signup-password.input(type='password' name='signup-password')
+      input#signup-password.input(type='password' name='signup-password' value= locals.password)
       .phone.flex.align-bottom
         .phone-label-input
           label.label(for='signup-phone-input') Phone Number
-          input#signup-phone-input.input.phone-input(type='text' name='signup-phone' placeholder='+380123456789' minlength='12' maxlength='13')
-        button#verificate.verificate.btn Verificate
+          input#signup-phone-input.input.phone-input(type='text' name='signup-phone'
+          placeholder='+380123456789' minlength='12' maxlength='13' value= locals.phoneNumber)
+        button#verificate.verificate.btn(formaction="/users/nexmo") Verificate
       label.label(for='signup-vercode') Verification code
-      input#signup-vercode.input(type='text' name='signup-vercode' placeholder='****')
+      input#signup-vercode.input(type='text' name='signup-vercode'
+      placeholder='****' minlength='1' maxlength='4' value= locals.verCode)
+      label.label(for='signup-secret-word') Your secret word
+      input#signup-secret-word.input(type='text' name='signup-secret-word'
+      placeholder='Input your secret word' minlength='1' maxlength='15' value= locals.secret)
       input#signup-submit.btn.signup-btn(type='submit' value='Sign Up')
       p.agreement
         | By clicking Sign Up, you agree to hifriends&apos;s
@@ -25,9 +30,9 @@ block content
         p.form-footer-title
           | ----------Sign Up With----------
         .form-footer-btns.flex
-          a#signup-facebook.facebook-btn.btn.flex.align-center(href='#')
+          a#signup-facebook.facebook-btn.btn.flex.align-center(href='/users/facebook')
             span Facebook
-          a#signup-google.google-btn.btn.flex.align-center(href='#')
+          a#signup-google.google-btn.btn.flex.align-center(href='/users/google')
             span Google
-          a#signup-github.github-btn.btn.flex.align-center(href='#')
+          a#signup-github.github-btn.btn.flex.align-center(href='/users/github')
             span Github

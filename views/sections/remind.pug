@@ -1,0 +1,8 @@
+extends main
+
+block content
+  if !user
+    form#remind-form.form-body.signup-form(method='post' action='/users/remind')
+      label.label(for='remind-input') Input your email
+      input#remind-input.input(type='email' name='remind' required='')
+      input.btn.remind-btn(type='submit' value='Remind password')

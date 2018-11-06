@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const session = require('express-session');
 const expressValidator = require('express-validator');
@@ -86,17 +88,28 @@ app.get('*', (req, res, next) => {
   next();
 });
 
-require('./config/passport')(passport);
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.get('/', (req, res) => {
   res.render('index');
 });
 
-const users = require('./routes/users');
-app.use('/users', users);
+const register = require('./routes/register');
+const login = require('./routes/login');
+const logout = require('./routes/logout');
+const remind = require('./routes/remind');
+const reset = require('./routes/reset');
+const facebook = require('./routes/facebook');
+const google = require('./routes/google');
+
+app.use('/users', register);
+app.use('/users', login);
+app.use('/users', logout);
+app.use('/users', remind);
+app.use('/users', reset);
+app.use('/users', facebook);
+app.use('/users', google);
+app.use((req, res,) => {
+  res.status(404).render('index');
+});
 
 app.listen(PORT, () => {
   console.warn(`Server started on port ${PORT}...`);
