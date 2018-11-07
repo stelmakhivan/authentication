@@ -32,7 +32,7 @@ as database and [PassportJS API](http://www.passportjs.org/) for authentication;
 ## Contribution guide
 [Contribution](https://github.com/stelmakhivan/)
 
-## TODO
+## For running app
 1) Clone this project
 2) Install [NodeJS](https://nodejs.org/uk/)
 3) Install [MongoDB](https://www.mongodb.com/)
@@ -70,5 +70,8 @@ npm i
 ```sh
 npm run devserver
 ```
+
+## TODO
+1) Create `https` server 
 
 ## My App [Heroku](https://www.heroku.com/)
