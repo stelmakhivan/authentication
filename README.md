@@ -30,7 +30,7 @@ as database and [PassportJS API](http://www.passportjs.org/) for authentication;
 ![Github's oauth page](https://github.com/stelmakhivan/authentication/blob/master/mockups/05.jpg)
 
 ## Contribution guide
-[Contribution](https://github.com/stelmakhivan/)
+[Contribution](https://github.com/stelmakhivan/CONTRIBUTING.md)
 
 ## For running app
 1) Clone this project
