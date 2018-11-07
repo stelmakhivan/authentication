@@ -12,7 +12,9 @@ as database and [PassportJS API](http://www.passportjs.org/) for authentication;
 [Nexmo](https://www.nexmo.com/) for sending sms to user, and [Nodemailer](https://nodemailer.com/about/) for sending e-mail;
 > Also I used [express-session](https://www.npmjs.com/package/express-session) and [express-messages](https://www.npmjs.com/package/express-messages);
 > I used [pug](https://pugjs.org/api/getting-started.html) for views and [node-sass](https://www.npmjs.com/package/node-sass) for styling;
-> User can sign in with facebook (* From March, 2018 for facebook authentication you need to create https server), google and github, or choose local account;
+> User can sign in with Facebook 
+> (**"Enforce HTTPS. This setting requires HTTPS for OAuth Redirects and pages getting access tokens with the JavaScript SDK. All new apps created as of March 2018 have this setting on by default and you should plan to migrate any existing apps to use only HTTPS URLs by March 2019. Most major cloud application hosts provide free and automatic configuration of TLS certificates for your applications. If you self-host your app or your hosting service doesn't offer HTTPS by default, you can obtain a free certificate for your domain(s) from Let's Encrypt."*), 
+> Google and Github, or choose local account;
 
 ## Tech stack
 
