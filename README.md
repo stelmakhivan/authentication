@@ -5,7 +5,7 @@
 
 ## Sample Authentication
 
-[Demo]()  
+## Description 
 > In this [NodeJS](https://nodejs.org/uk/)/[Express](https://expressjs.com/) app I used [MongoDB](https://www.mongodb.com/) 
 as database and [PassportJS API](http://www.passportjs.org/) for authentication;
 > For hashing user's password I used [bcryptjs](https://www.npmjs.com/package/bcryptjs); 
@@ -23,14 +23,17 @@ as database and [PassportJS API](http://www.passportjs.org/) for authentication;
 * mongodb
 
 ## Mockups
+Sign UP
 ![SignUP page](https://github.com/stelmakhivan/authentication/blob/master/mockups/01.jpg)
+Log IN
 ![LOG IN page](https://github.com/stelmakhivan/authentication/blob/master/mockups/02.jpg)
+User's page
 ![User's page](https://github.com/stelmakhivan/authentication/blob/master/mockups/03.jpg)
+Google / Github auth 
 ![Google's oauth page](https://github.com/stelmakhivan/authentication/blob/master/mockups/04.jpg)
-![Github's oauth page](https://github.com/stelmakhivan/authentication/blob/master/mockups/05.jpg)
 
 ## Contribution guide
-[Contribution](https://github.com/stelmakhivan/CONTRIBUTING.md)
+[Contribution](https://github.com/stelmakhivan/authentication/blob/master/CONTRIBUTING.md)
 
 ## For running app
 1) Clone this project
@@ -75,3 +78,8 @@ npm run devserver
 1) Create `https` server 
 
 ## My App [Heroku](https://www.heroku.com/)
+
+License
+----
+
+MIT
