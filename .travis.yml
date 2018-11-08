@@ -2,8 +2,5 @@ language: node_js
 node_js:
   - "10"
 services: mongodb
-cache:
-  directories:
-    - "node_modules"
 script:
-  - "start": "node app"
+  - "devserver": "nodemon ./bin/www -w ./"
