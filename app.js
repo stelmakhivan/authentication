@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const compression = require('compression');
 const session = require('express-session');
 const expressValidator = require('express-validator');
 const path = require('path');
@@ -22,9 +23,9 @@ const db = mongoose.connection;
 db.once('open', () => console.warn('Connected to MongoDB'));
 
 db.on('error', err => console.error(err));
-// mongoose.set('useFindAndModify', false);
 
 const app = express();
+app.use(compression());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
