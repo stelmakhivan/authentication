@@ -46,7 +46,7 @@ app.use(
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret: process.env.DB_SECRET,
+  secret: `${process.env.DB_SECRET}`,
   resave: true,
   saveUninitialized: true
 }));
