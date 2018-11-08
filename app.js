@@ -17,7 +17,7 @@ dotenv.config();
 const config = require('./config/database');
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect(config.database, { useNewUrlParser: true });
+mongoose.connect(config.database);
 const db = mongoose.connection;
 
 db.once('open', () => console.warn('Connected to MongoDB'));
