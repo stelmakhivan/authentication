@@ -3,7 +3,7 @@
 * Course curator - [Taras Pashko](https://github.com/etrn)
 * Front-camp [Facebook](https://www.facebook.com/groups/270300106928894)
 
-## Sample Authentication
+## Sample Authentication [![Build Status](https://travis-ci.org/stelmakhivan/authentication.svg?branch=master)](https://travis-ci.org/stelmakhivan/authentication)
 
 ## Description 
 > In this [NodeJS](https://nodejs.org/uk/)/[Express](https://expressjs.com/) app I used [MongoDB](https://www.mongodb.com/) 
