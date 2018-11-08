@@ -6,4 +6,5 @@ services: mongodb
 before_install:
   - npm install
 script:
-  - "start": "node app.js"
+  - node app.js
+  - npm test
