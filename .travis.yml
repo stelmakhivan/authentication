@@ -8,5 +8,4 @@ env:
 before_install:
   - npm install
 script:
-  - node app.js
   - npm test
