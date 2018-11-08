@@ -1,4 +1,4 @@
 module.exports = {
-  database: process.env.MONGODB,
-  secret: process.env.DB_SECRET
+  database: `${process.env.MONGODB}`,
+  secret: `${process.env.DB_SECRET}`
 };
