@@ -3,6 +3,8 @@ node_js:
   - 10
   - node
 services: mongodb
+env:
+  - DB_SECRET=secret
 before_install:
   - npm install
 script:
