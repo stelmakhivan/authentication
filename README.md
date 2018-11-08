@@ -31,7 +31,7 @@ as database and [PassportJS API](http://www.passportjs.org/) for authentication;
 ## TODO
 1) Create `https` server 
 
-## My App [Heroku](https://www.heroku.com/)
+## My App [Heroku](https://sampleauthentication.herokuapp.com/)
 
 License
 ----
