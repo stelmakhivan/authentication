@@ -1,10 +1,9 @@
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user').user;
-const FacebookUser = require('../models/user').facebookUser;
-const GoogleUser = require('../models/user').googleUser;
 const bcrypt = require('bcryptjs');
 const FacebookStrategy = require('passport-facebook').Strategy;
-const GoogleStrategy = require('passport-google-oauth20');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GitHubStrategy = require('passport-github').Strategy;
 
 module.exports = passport => {
   passport.use(new LocalStrategy({
@@ -39,30 +38,13 @@ module.exports = passport => {
     clientSecret: `${process.env.FACEBOOK_APP_SECRET}`,
     callbackURL: `${process.env.FACEBOOK_CALLBACK_URL}`
   },
-  (accessToken, refreshToken, profile, done) => {
+  (accessToken, refreshToken, profile, cb) => {
     console.warn(profile);
     process.nextTick(() => {
-      FacebookUser.findOne({id: profile.id}, (err, user) => {
-        if (err) {
-          return done(err);
-        }
-        if (user) {
-          return done(null, user);
-        } else {
-          const newUser = new FacebookUser();
-          newUser.id = profile.id;
-          newUser.token = accessToken;
-          newUser.email = profile.emails[0].value;
-          newUser.name = `${profile.name.givenName} ${profile.name.familyName}`;
-
-          newUser.save(err => {
-            if (err) {
-              console.error(err);
-            }
-            return done(null, user);
-          });
-        }
-      });
+      User.findOrCreate({userid: profile.id},
+        { login: profile.displayName, userid: profile.id }, (err, user) => {
+          return cb(err, user);
+        });
     });
   }
   ));
@@ -73,25 +55,23 @@ module.exports = passport => {
     callbackURL: `${process.env.GOOGLE_CALLBACK_URL}`
   },
   (accessToken, refreshToken, profile, cb) => {
-    GoogleUser.findOne({googleId: profile.id}, (err, user) => {
-      if (err) {
-        return cb(err);
-      }
-      if (user) {
-        return cb(null, user);
-      } else {
-        const newUser = new GoogleUser();
-        newUser.googleId = profile.id;
-        newUser.login = profile.displayName;
+    User.findOrCreate({ userid: profile.id },
+      { login: profile.displayName, userid: profile.id, googleId: profile.id}, (err, user) => {
+        return cb(err, user);
+      });
+  }
+  ));
 
-        newUser.save(err => {
-          if (err) {
-            console.error(err);
-          }
-          return cb(err, newUser);
-        });
-      }
-    });
+  passport.use(new GitHubStrategy({
+    clientID: `${process.env.GITHUB_CLIENT_ID}`,
+    clientSecret: `${process.env.GITHUB_CLIENT_SECRET}`,
+    callbackURL: `${process.env.GITHUB_CALLBACK_URL}`
+  },
+  (accessToken, refreshToken, profile, cb) => {
+    User.findOrCreate({ userid: profile.id },
+      { login: profile.displayName, userid: profile.id, githubId: profile.id}, (err, user) => {
+        return cb(err, user);
+      });
   }
   ));
 

@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const compression = require('compression');
 const session = require('express-session');
 const expressValidator = require('express-validator');
 const path = require('path');
@@ -24,6 +25,7 @@ db.once('open', () => console.warn('Connected to MongoDB'));
 db.on('error', err => console.error(err));
 
 const app = express();
+app.use(compression());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -44,7 +46,7 @@ app.use(
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret: process.env.DB_SECRET,
+  secret: `${process.env.DB_SECRET}`,
   resave: true,
   saveUninitialized: true
 }));
@@ -99,6 +101,7 @@ const remind = require('./routes/remind');
 const reset = require('./routes/reset');
 const facebook = require('./routes/facebook');
 const google = require('./routes/google');
+const github = require('./routes/github');
 
 app.use('/users', register);
 app.use('/users', login);
@@ -107,6 +110,7 @@ app.use('/users', remind);
 app.use('/users', reset);
 app.use('/users', facebook);
 app.use('/users', google);
+app.use('/users', github);
 app.use((req, res,) => {
   res.status(404).render('index');
 });

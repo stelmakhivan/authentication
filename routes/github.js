@@ -2,12 +2,12 @@ const express = require('express');
 const router = new express.Router();
 const passport = require('passport');
 
-router.get('/google',
-  passport.authenticate('google', {scope: ['profile']})
+router.get('/github',
+  passport.authenticate('github',  { scope: [ 'user:email' ] })
 );
 
-router.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: '/users/login' }),
+router.get('/github/callback',
+  passport.authenticate('github', { failureRedirect: '/users/login' }),
   (req, res) => {
     res.redirect('/');
   });
