@@ -39,7 +39,6 @@ module.exports = passport => {
     callbackURL: `${process.env.FACEBOOK_CALLBACK_URL}`
   },
   (accessToken, refreshToken, profile, cb) => {
-    console.warn(profile);
     process.nextTick(() => {
       User.findOrCreate({userid: profile.id},
         { login: profile.displayName, userid: profile.id }, (err, user) => {
