@@ -2,21 +2,21 @@ extends main
 
 block content
   if !user
-    form#login-form.form-body.login-form.animated.fadeInLeft(method='post' action='/users/login')
+    form.form-body.login-form.animated.fadeInLeft(method='post' action='/users/login')
       label.label(for='login') Login
       input#login.input(type='text' name='login' required='')
       label.label(for='password') Password
       input#password.input(type='password' name='password' required='')
       .flex.align-center
-        input#login-submit.btn(type='submit' value='Login')
+        input.btn(type='submit' value='Login')
         a.forget-password(href='/users/remind') Forget password?
       .form-footer
         p.form-footer-title
           | ----------Login With----------
         .form-footer-btns.flex
-          a#login-facebook.facebook-btn.btn.flex.align-center(href='/users/facebook')
+          a.facebook-btn.btn.flex.align-center(href='/users/facebook')
             span Facebook
-          a#login-google.google-btn.btn.flex.align-center(href='/users/google')
+          a.google-btn.btn.flex.align-center(href='/users/google')
             span Google
-          a#login-github.github-btn.btn.flex.align-center(href='/users/github')
+          a.github-btn.btn.flex.align-center(href='/users/github')
             span Github

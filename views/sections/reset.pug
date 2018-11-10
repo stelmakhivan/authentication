@@ -2,7 +2,7 @@ extends main
 
 block content
   if !user
-    form#reset-form.form-body.signup-form(method='post' action='/users/reset')
+    form.form-body.signup-form(method='post' action='/users/reset')
       label.label(for='login') Login
       input#login.input(type='text' name='login' required='')
       label.label(for='reset-password1') Input new password
