@@ -3,6 +3,7 @@
 const express = require('express');
 const compression = require('compression');
 const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const expressValidator = require('express-validator');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -25,6 +26,17 @@ db.once('open', () => console.warn('Connected to MongoDB'));
 db.on('error', err => console.error(err));
 
 const app = express();
+const store = new MongoDBStore({
+  uri: `${process.env.MONGODB}`,
+  collection: 'mySessions'
+});
+store.on('connected', () => {
+  store.client;
+});
+store.on('error', error => {
+  assert.ifError(error);
+  assert.ok(false);
+});
 app.use(compression());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -47,6 +59,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   secret: `${process.env.DB_SECRET}`,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7
+  },
+  store: store,
   resave: true,
   saveUninitialized: true
 }));
