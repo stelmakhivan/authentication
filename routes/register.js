@@ -1,12 +1,12 @@
 const express = require('express');
 const router = new express.Router();
 const bcrypt = require('bcryptjs');
-// const Nexmo = require('nexmo');
+const Nexmo = require('nexmo');
 
-// const nexmo = new Nexmo({
-//   apiKey: `${process.env.NEXMO_API_KEY}`,
-//   apiSecret: `${process.env.NEXMO_API_SECRET}`
-// });
+const nexmo = new Nexmo({
+  apiKey: `${process.env.NEXMO_API_KEY}`,
+  apiSecret: `${process.env.NEXMO_API_SECRET}`
+});
 
 const User = require('../models/user').user;
 
@@ -44,12 +44,10 @@ router.post('/nexmo', (req, res) => {
     res.render('sections/register');
 
     // Trial Nexmo
-    // const from = 'Nexmo';
-    // const to = res.locals.phoneNumber;
-    // const text = `${process.env.VER_CODE}`;
-    // nexmo.message.sendSms(from, to, text);
-
-    console.warn(`${process.env.VER_CODE}`);
+    const from = 'Nexmo';
+    const to = res.locals.phoneNumber;
+    const text = `${process.env.VER_CODE}`;
+    nexmo.message.sendSms(from, to, text);
   }
 });
 
