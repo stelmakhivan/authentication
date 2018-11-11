@@ -120,15 +120,7 @@ app.use((req, res,) => {
   res.status(404).render('index');
 });
 
-app.get('/sw.js', (req, res) => {
-  res.header('Content-Type', 'text/javascript');
-  res.sendFile(path.join(__dirname,'public', 'sw.js'));
-});
-
-app.get('/loader.js', (req, res) => {
-  res.header('Content-Type', 'text/javascript');
-  res.sendFile(path.join(__dirname,'public', 'loader.js'));
-});
+app.use('/sw.js', express.static(__dirname + '/public/sw.js'));
 
 app.listen(PORT, () => {
   console.warn(`Server started on port ${PORT}...`);
