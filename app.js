@@ -120,6 +120,7 @@ app.use((req, res,) => {
   res.status(404).render('index');
 });
 
+app.use('/loader.js', express.static(__dirname + '/public/loader.js'));
 app.use('/sw.js', express.static(__dirname + '/public/sw.js'));
 
 app.listen(PORT, () => {
