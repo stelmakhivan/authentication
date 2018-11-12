@@ -44,7 +44,7 @@ target='_blank'>Reset password</a> to reset your password</p>
           console.warn('Email sent: ' + info.response);
         }
       });
-      req.flash('success', 'We have sent your password to your email');
+      req.flash('success', 'We have sent instructions to your email');
       res.redirect('/users/login');
     }
   });

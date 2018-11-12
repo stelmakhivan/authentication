@@ -3,6 +3,7 @@
 const express = require('express');
 const compression = require('compression');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const expressValidator = require('express-validator');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -46,6 +47,10 @@ app.use(
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
+  store: new MongoStore({
+    url: config.database,
+    autoRemove: 'disabled'
+  }),
   secret: `${process.env.DB_SECRET}`,
   resave: true,
   saveUninitialized: true
@@ -114,6 +119,9 @@ app.use('/users', github);
 app.use((req, res,) => {
   res.status(404).render('index');
 });
+
+app.use('/loader.js', express.static(__dirname + '/public/loader.js'));
+app.use('/sw.js', express.static(__dirname + '/public/sw.js'));
 
 app.listen(PORT, () => {
   console.warn(`Server started on port ${PORT}...`);

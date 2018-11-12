@@ -28,9 +28,6 @@ as database and [PassportJS API](http://www.passportjs.org/) for authentication;
 ## Contribution guide
 [Contribution](https://github.com/stelmakhivan/authentication/blob/master/CONTRIBUTING.md)
 
-## TODO
-1) Create `https` server 
-
 ## My App [Heroku](https://sampleauthentication.herokuapp.com/)
 
 License

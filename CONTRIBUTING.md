@@ -10,10 +10,11 @@
 6. Open a pull request.
 
 ## For running app
-2) Install [NodeJS](https://nodejs.org/uk/)
-3) Install [MongoDB](https://www.mongodb.com/)
-4) Create `.env` file with your configs
+1) Install [NodeJS](https://nodejs.org/uk/)
+2) Install [MongoDB](https://www.mongodb.com/)
+3) Create `.env` file with your configs
 ```sh
+MONGODB=<LINK_TO_MONGODB>
 DB_SECRET=<YOUR_SECRET>
 PORT=8080
 NEXMO_API_KEY=<YOUR_API_KEY>
@@ -30,7 +31,7 @@ GITHUB_CLIENT_ID=<YOUR_GITHUB_ID>
 GITHUB_CLIENT_SECRET=<YOUR_GITHUB_SECRET>
 GITHUB_CALLBACK_URL=/users/github/callback
 ```
-5) Start MongoDB server
+4) Start MongoDB server
 ```sh
 net start MongoDB
 ```
@@ -38,7 +39,7 @@ For Windows 32 bit I used this command
 ```sh
 mongod --storageEngine=mmapv1 --dbpath C:/mongodb/data/db
 ```
-6) Install all packages
+5) Install all packages
 ```sh
 npm i
 ```
@@ -46,3 +47,5 @@ npm i
 ```sh
 npm run devserver
 ```
+7) For [Facebook](https://facebook.com/) auth you can deploy your project to [Heroku](https://heroku.com/) (there are https server) and use db from [mLab](https://mlab.com/)
+* Remember to config env variables on [Heroku](https://heroku.com/)
