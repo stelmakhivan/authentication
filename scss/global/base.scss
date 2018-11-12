@@ -17,16 +17,20 @@ body {
 
 a {
   text-decoration: none;
+
   &:active {
     color: inherit;
   }
 }
 
-ul, li {
+ul,
+li {
   list-style-type: none;
 }
 
-ul, li, p {
+ul,
+li,
+p {
   margin: 0;
   padding: 0;
 }

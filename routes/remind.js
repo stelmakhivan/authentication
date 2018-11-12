@@ -32,7 +32,7 @@ router.post('/remind', (req, res) => {
         html: `
 <h1>Hi, ${user.login}</h1>
 <p>Go to
-<a href='http://localhost:8080/users/reset' 
+<a href='https://sampleauthentication.herokuapp.com/users/reset'
 target='_blank'>Reset password</a> to reset your password</p>
 `
       };

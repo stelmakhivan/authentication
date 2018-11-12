@@ -3,20 +3,21 @@
   padding-bottom: 1rem;
 }
 
-.form-header-btn {
-  width: 50%;
-  color: #000;
-  &:hover {
-    background-color: #b72e45;
-  }
-}
-
 .form-header-btn,
 .btn {
   font: inherit;
   border: none;
   padding: 0.8rem;
   background-color: #fff;
+}
+
+.form-header-btn {
+  width: 50%;
+  color: #000;
+
+  &:hover {
+    background-color: #b72e45;
+  }
 }
 
 .btn {
@@ -129,7 +130,7 @@
 
 .agreement {
   text-align: center;
-  font-size: 0.6rem
+  font-size: 0.6rem;
 }
 
 .verificate {
